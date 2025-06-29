@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Me</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Contact Me</h1>
+  
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section>
+    <form id="contactForm">
+      <label for="name">Your Name:</label><br>
+      <input type="text" id="name" name="name" placeholder="Enter your name"><br><br>
+
+      <label for="email">Your Email:</label><br>
+      <input type="email" id="email" name="email" placeholder="Enter your email"><br><br>
+
+      <label for="message">Your Message:</label><br>
+      <textarea id="message" name="message" placeholder="Write your message here" rows="5" cols="30"></textarea><br><br>
+
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <button onclick="toggleTheme()">🌗 Dark Mode</button>
+
+  <script>
+    // Simple form validation
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent page reload
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill in all fields before sending.');
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      alert('Thank you, ' + name + '! Your message has been received.');
+
+      // Clear the form after successful submission
+      this.reset();
+    });
+
+    // Email validation helper function
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email.toLowerCase());
+    }
+  </script>
+
+</body>
+</html>
